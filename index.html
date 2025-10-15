@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schreibtrainer Interface</title>
+    <!-- Tailwind CSS für schnelles und modernes Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ein paar zusätzliche Stile für ein besseres Look-and-Feel */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-button.active {
+            border-color: #3b82f6; /* Blauer Rand für aktiven Tab */
+            color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-slate-900">KI-Schreibtrainer</h1>
+            <p class="text-slate-600 mt-2">Analysiere deine Texte auf Inhalt und Ausdruck.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Eingabebereich -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-semibold mb-4">Texteingabe</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="text1" class="block text-sm font-medium text-slate-700 mb-1">Text 1 (Haupttext)</label>
+                        <textarea id="text1" rows="10" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Füge hier deinen Haupttext ein..."></textarea>
+                    </div>
+                    <div>
+                        <label for="text2" class="block text-sm font-medium text-slate-700 mb-1">Text 2 (Vergleichstext)</label>
+                        <textarea id="text2" rows="10" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Optional: Füge hier einen Text zum inhaltlichen Vergleich ein..."></textarea>
+                    </div>
+                </div>
+                <button id="analyzeBtn" class="mt-6 w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
+                    Analyse starten
+                </button>
+            </div>
+
+            <!-- Ausgabebereich -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <div class="flex border-b border-slate-200 mb-4">
+                    <button id="tab-inhalt" class="tab-button active flex-1 py-2 text-center font-semibold border-b-2 transition">Inhalt</button>
+                    <button id="tab-ausdruck" class="tab-button flex-1 py-2 text-center font-semibold border-b-2 border-transparent text-slate-500 transition">Ausdruck</button>
+                </div>
+
+                <!-- Ladeanzeige -->
+                <div id="loader" class="hidden justify-center items-center py-10">
+                    <div class="loader"></div>
+                </div>
+
+                <!-- Ergebnis-Container -->
+                <div id="results-container">
+                    <!-- Inhalt (SBERT) -->
+                    <div id="result-inhalt">
+                        <h3 class="text-xl font-semibold mb-2">Inhaltliche Ähnlichkeit (SBERT)</h3>
+                        <div id="sbert-score" class="text-5xl font-bold text-blue-600 mb-2">0.0 %</div>
+                        <p id="sbert-message" class="text-slate-600">Gib zwei Texte ein, um deren inhaltliche Ähnlichkeit zu bestimmen.</p>
+                    </div>
+
+                    <!-- Ausdruck (Sequencer & Vale) -->
+                    <div id="result-ausdruck" class="hidden space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Satzbau (Sequencer)</h3>
+                            <div class="flex items-baseline gap-4">
+                               <span id="sequencer-score" class="text-3xl font-bold text-emerald-600">N/A</span>
+                               <span id="sequencer-details" class="text-slate-600">Analyse ausstehend.</span>
+                            </div>
+                             <p id="sequencer-message" class="text-sm text-slate-500 mt-1"></p>
+                        </div>
+                        <div class="border-t border-slate-200 pt-6">
+                            <h3 class="text-xl font-semibold mb-2">Stil & Grammatik (Vale)</h3>
+                            <div id="vale-results" class="bg-slate-100 p-4 rounded-lg font-mono text-sm max-h-60 overflow-y-auto">
+                                <p class="text-slate-500">Vale-Analyse ausstehend.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        // DOM-Elemente abrufen
+        const text1Input = document.getElementById('text1');
+        const text2Input = document.getElementById('text2');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const loader = document.getElementById('loader');
+        const resultsContainer = document.getElementById('results-container');
+
+        // Tabs und Ergebnis-Container
+        const tabInhalt = document.getElementById('tab-inhalt');
+        const tabAusdruck = document.getElementById('tab-ausdruck');
+        const resultInhalt = document.getElementById('result-inhalt');
+        const resultAusdruck = document.getElementById('result-ausdruck');
+
+        // Ergebnis-Anzeigeelemente
+        const sbertScoreEl = document.getElementById('sbert-score');
+        const sbertMessageEl = document.getElementById('sbert-message');
+        const sequencerScoreEl = document.getElementById('sequencer-score');
+        const sequencerDetailsEl = document.getElementById('sequencer-details');
+        const sequencerMessageEl = document.getElementById('sequencer-message');
+        const valeResultsEl = document.getElementById('vale-results');
+
+        // Tab-Umschaltlogik
+        tabInhalt.addEventListener('click', () => {
+            tabInhalt.classList.add('active');
+            tabAusdruck.classList.remove('active');
+            resultInhalt.classList.remove('hidden');
+            resultAusdruck.classList.add('hidden');
+        });
+
+        tabAusdruck.addEventListener('click', () => {
+            tabAusdruck.classList.add('active');
+            tabInhalt.classList.remove('active');
+            resultAusdruck.classList.remove('hidden');
+            resultInhalt.classList.add('hidden');
+        });
+
+        // Analyse-Button Event Listener
+        analyzeBtn.addEventListener('click', async () => {
+            const text1 = text1Input.value;
+            const text2 = text2Input.value;
+
+            if (!text1) {
+                alert('Bitte gib mindestens den Haupttext (Text 1) ein.');
+                return;
+            }
+
+            // UI für Ladezustand vorbereiten
+            loader.classList.remove('hidden');
+            loader.classList.add('flex');
+            resultsContainer.classList.add('hidden');
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = 'Analysiere...';
+
+            try {
+                // API-Aufruf an das Flask-Backend
+                const response = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text1, text2 }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP-Fehler! Status: ${response.status}`);
+                }
+
+                const results = await response.json();
+                
+                // Ergebnisse im UI anzeigen
+                updateUI(results);
+
+            } catch (error) {
+                console.error('Fehler bei der Analyse:', error);
+                alert('Ein Fehler ist aufgetreten. Bitte überprüfe die Konsole für Details.');
+                // Fehlerfall im UI anzeigen (optional)
+                sbertMessageEl.textContent = "Analyse fehlgeschlagen.";
+                sequencerDetailsEl.textContent = "Analyse fehlgeschlagen.";
+                valeResultsEl.innerHTML = `<p class="text-red-500">Analyse fehlgeschlagen.</p>`;
+
+            } finally {
+                // UI aus Ladezustand zurücksetzen
+                loader.classList.add('hidden');
+                loader.classList.remove('flex');
+                resultsContainer.classList.remove('hidden');
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = 'Analyse starten';
+            }
+        });
+
+        function updateUI(results) {
+            // SBERT Ergebnisse
+            if (results.sbert && results.sbert.error) {
+                sbertScoreEl.textContent = 'Fehler';
+                sbertMessageEl.textContent = results.sbert.error;
+            } else if(results.sbert) {
+                sbertScoreEl.textContent = `${(results.sbert.score * 100).toFixed(1)} %`;
+                sbertMessageEl.textContent = results.sbert.message;
+            }
+
+            // Sequencer Ergebnisse
+            if (results.sequencer && results.sequencer.error) {
+                sequencerScoreEl.textContent = 'Fehler';
+                sequencerDetailsEl.textContent = results.sequencer.error;
+            } else if(results.sequencer) {
+                sequencerScoreEl.textContent = results.sequencer.score;
+                sequencerDetailsEl.textContent = results.sequencer.details;
+                sequencerMessageEl.textContent = results.sequencer.message;
+            }
+
+            // Vale Ergebnisse
+             if (results.vale && results.vale.error) {
+                valeResultsEl.innerHTML = `<p class="text-red-500">${results.vale.error}</p>`;
+            } else if (results.vale && results.vale.details) {
+                 // Versuchen, den JSON-String zu parsen
+                try {
+                    const valeJson = JSON.parse(results.vale.details);
+                    let htmlOutput = '';
+                    // Annahme: valeJson ist ein Objekt, bei dem jeder Schlüssel eine Datei ist
+                    for (const fileName in valeJson) {
+                        if (valeJson[fileName].length > 0) {
+                            valeJson[fileName].forEach(finding => {
+                                htmlOutput += `<div class="p-2 border-b border-slate-200">
+                                    <p><strong>[${finding.Severity}]</strong> ${finding.Message}</p>
+                                    <p class="text-xs text-slate-500">Zeile ${finding.Line}, Spalte ${finding.Span[0]}</p>
+                                </div>`;
+                            });
+                        }
+                    }
+                    valeResultsEl.innerHTML = htmlOutput || '<p class="text-slate-500">Keine Vorschläge von Vale gefunden.</p>';
+
+                } catch(e) {
+                    // Fallback, wenn es kein JSON ist
+                    valeResultsEl.textContent = results.vale.details || 'Keine Vorschläge von Vale gefunden.';
+                }
+
+            } else {
+                 valeResultsEl.innerHTML = '<p class="text-slate-500">Keine Vorschläge von Vale gefunden.</p>';
+            }
+        }
+    </script>
+
+</body>
+</html>
