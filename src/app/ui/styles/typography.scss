@@ -1,0 +1,15 @@
+.faded-h2 {
+  @apply opacity-50;
+}
+
+body h1 {
+  @apply text-3xl mb-4;
+}
+
+body h2 {
+  @apply text-2xl mb-3;
+}
+
+body h3 {
+  @apply text-xl mb-3;
+}

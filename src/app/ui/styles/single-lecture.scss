@@ -1,0 +1,21 @@
+.lecture-single-wrapper {
+    @apply grid gap-4;
+    grid-template-columns: 1fr .5fr;
+    @apply md:grid-cols-1;
+
+    .video-player {
+        margin-bottom: 0 !important;
+    }
+
+    .lecture-description {
+        @apply shadow-lg rounded-2xl bg-white p-8;
+    }
+}
+
+.lecture-content {
+    @apply border-l-[1px] border-l-gray-200 pl-4;
+
+    .lecture-module {
+        @apply flex flex-col gap-8 pl-4;
+    }
+}

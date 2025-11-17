@@ -1,0 +1,8 @@
+extends: existence
+message: "Avoid 'clearly'; if something is clear, you shouldn't need to say it."
+level: suggestion
+ignorecase: true
+scope: text
+nonword: true
+tokens:
+  - clearly

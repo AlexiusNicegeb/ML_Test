@@ -1,0 +1,84 @@
+.admin-files .folder-component {
+  padding: 20px;
+}
+
+.admin-files .folder-input {
+  @apply mb-6 flex md:flex-row gap-4 flex-col;
+}
+
+.admin-files .folder-input input {
+  padding: 8px;
+  margin-right: 5px;
+  @apply basis-1/3;
+}
+
+.admin-files .folder-bradcrumb {
+  @apply flex gap-4 items-center mb-6 min-h-[40px];
+}
+
+.admin-files .folder-bradcrumb button {
+  @apply border rounded-md p-2 bg-grey font-bold hover:bg-primary hover:text-white;
+}
+
+.admin-files .folder {
+  @apply flex gap-3 items-center justify-center self-start;
+}
+
+.admin-files .file-name,
+.admin-files .folder-name {
+  display: block;
+  text-align: left;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-files .folder h3 {
+  margin-top: 0;
+  font-size: 1.1em;
+}
+
+.admin-files .folder ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-files .folder ul li {
+  font-size: 0.9em;
+}
+
+.admin-files .subfolder-input button {
+  padding: 4px;
+}
+
+.admin-files .subfolder-list {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.file-upload-area {
+  .file-list {
+    @apply flex gap-4 flex-wrap items-start self-start;
+  }
+
+  .file-item {
+    @apply relative flex gap-2 items-center rounded-md p-2 bg-primary text-white;
+  }
+
+  .file-actions-menu {
+    @apply hidden absolute left-0 top-12 min-w-[320px] bg-white rounded shadow-sm z-10 text-black border py-2 px-4;
+  }
+
+  .file-actions-menu.show {
+    @apply block;
+  }
+
+  .file-actions-menu p {
+    @apply mb-4;
+  }
+
+  .file-actions-menu button {
+    @apply gap-2 pl-0;
+  }
+}

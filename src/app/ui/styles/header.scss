@@ -1,0 +1,107 @@
+.user-header {
+  @apply border-t-[4px] lg:border-t-[6px] border-secondary relative  w-full flex items-center justify-center bg-white;
+}
+
+.header-wrapper {
+  @extend .wrapper;
+  @apply flex gap-4 py-[10px] px-[20px] justify-between items-center;
+}
+
+.user-header .logo {
+  @apply z-50 translate-y-[3px];
+}
+
+.user-header .logo img {
+  @apply h-12 w-auto;
+
+  @media (min-width: 1420px) {
+    @apply h-14;
+  }
+}
+
+.user-header .main-navigation {
+  @apply flex items-center justify-center;
+}
+
+.user-header .main-navigation .mobile-login {
+  @apply hidden;
+}
+
+.user-header .main-navigation.open:after {
+  top: 0;
+  transform: scale(2.7);
+}
+
+.user-header .main-navigation ul {
+  @apply flex gap-10;
+}
+
+.user-header .user-avatar {
+  @apply lg:hidden block;
+}
+
+.user-header .burger-menu {
+  @apply lg:block hidden;
+}
+
+@media (max-width: 1024px) {
+  .user-header .main-navigation .mobile-login {
+    @apply block;
+  }
+
+  .user-header .main-navigation .desktop-login {
+    @apply hidden;
+  }
+
+  .user-header .main-navigation:after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: -100vh;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    z-index: 1;
+    border-radius: 50%;
+    transform: scale(0.2);
+    transition: all 0.4s ease;
+    @apply bg-primary lg:hidden;
+  }
+
+  .burger-menu-animating .user-header .main-navigation,
+  .user-header .main-navigation.open {
+    @apply overflow-hidden h-dvh w-full fixed top-0 left-0 z-50;
+    z-index: 100;
+  }
+
+  .user-header .main-navigation.open {
+    transition: background-color 0.15s ease;
+    transition-delay: 0.15s;
+    @apply bg-primary;
+  }
+
+  .user-header .main-navigation ul {
+    @apply opacity-0 w-0 h-0 overflow-hidden;
+    .nav-link:hover,
+    .nav-link {
+      @apply text-black;
+    }
+    .nav-link-active,
+    .nav-link-active:hover {
+      @apply text-white;
+    }
+  }
+
+  .user-header .main-navigation.open ul {
+    transition: opacity 0.5s ease;
+    transition-delay: 0.15s;
+    @apply flex flex-col w-auto h-auto overflow-auto items-center gap-4 opacity-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
+  }
+  .user-header .main-navigation.open li {
+    color: red;
+  }
+
+  .nav-link.nav-link-active {
+    @apply text-white;
+  }
+}

@@ -1,0 +1,159 @@
+.week-picker-display {
+  width: 100%;
+  width: 250px;
+  height: 40px;
+  color: #454545;
+  position: relative;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #c3c0cc;
+  transition: 0.5s ease;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.week-picker-display .week-picker-options {
+  padding: 0.4rem;
+  position: absolute;
+  top: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #c3c0cc;
+  display: flex;
+  overflow: hidden;
+  background: white;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.week-picker-display .title-week {
+  padding: 0.8rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.week-picker-display .numbers-container {
+  border-top: 1px solid gainsboro;
+  width: 100%;
+  padding: 0.3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.week-picker-display .single-number {
+  width: 100%;
+  aspect-ratio: 1;
+  font-size: 0.8rem;
+  background: none;
+  color: black;
+  display: grid;
+  place-items: center;
+}
+
+.week-picker-display .selected-week {
+  @apply text-white bg-primary;
+}
+
+.week-picker-display .other-month {
+  background: none;
+  color: #c3c0cc;
+}
+
+.week-picker-display .day {
+  background: none;
+  color: black;
+}
+
+.week-picker-display .arrow-container {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  transition: 0.2s ease-in;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.week-picker-display .arrow-container svg {
+  stroke: #454545;
+}
+
+.week-picker-display .arrow-container:hover {
+  @apply bg-primary;
+  border-radius: 15%;
+}
+
+.week-picker-display arrow-container:hover svg {
+  stroke: #fff;
+  fill: #fff;
+}
+
+.week-picker-display .other-month {
+  background: none;
+  color: #c3c0cc;
+}
+
+.week-picker-display .SelectedWeekExample .DayPicker-Month {
+  border-collapse: separate;
+}
+
+.week-picker-display .SelectedWeekExample .DayPicker-WeekNumber {
+  outline: none;
+}
+
+.week-picker-display .SelectedWeekExample .DayPicker-Day {
+  outline: none;
+  border: 1px solid transparent;
+}
+
+.week-picker-display .SelectedWeekExample .DayPicker-Day--hoverRange {
+  background-color: #efefef !important;
+}
+
+.week-picker-display .SelectedWeekExample .DayPicker-Day--selectedRange {
+  background-color: #fff7ba !important;
+  border-top-color: #ffeb3b;
+  border-bottom-color: #ffeb3b;
+  border-left-color: #fff7ba;
+  border-right-color: #fff7ba;
+}
+
+.week-picker-display .SelectedWeekExample .DayPicker-Day--selectedRangeStart {
+  background-color: #ffeb3b !important;
+  border-left: 1px solid #ffeb3b;
+}
+
+.week-picker-display .SelectedWeekExample .DayPicker-Day--selectedRangeEnd {
+  background-color: #ffeb3b !important;
+  border-right: 1px solid #ffeb3b;
+}
+
+.week-picker-display
+  .SelectedWeekExample
+  .DayPicker-Day--selectedRange:not(
+    .DayPicker-Day--outside
+  ).DayPicker-Day--selected,
+.week-picker-display
+  .SelectedWeekExample
+  .DayPicker-Day--hoverRange:not(
+    .DayPicker-Day--outside
+  ).DayPicker-Day--selected {
+  border-radius: 0 !important;
+  color: black !important;
+}
+.week-picker-display .SelectedWeekExample .DayPicker-Day--hoverRange:hover {
+  border-radius: 0 !important;
+}

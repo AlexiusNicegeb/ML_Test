@@ -1,0 +1,56 @@
+.course-module {
+    @apply flex items-center justify-between gap-4 mt-4 mb-8 p-6 bg-gray-100 shadow-lg rounded-3xl relative;
+    @apply cursor-pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1023%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(24%2c 161%2c 247%2c 0.12)'%3e%3c/rect%3e%3cpath d='M0%2c344.73C78.958%2c354.755%2c158.584%2c390.532%2c233.231%2c362.915C313.654%2c333.161%2c382.97%2c269.146%2c417.02%2c190.446C450.832%2c112.296%2c436.773%2c22.781%2c416.136%2c-59.831C396.978%2c-136.524%2c358.547%2c-206.23%2c303.707%2c-263.164C250.822%2c-318.068%2c185.709%2c-363.453%2c110.681%2c-376.945C39.27%2c-389.787%2c-31.96%2c-364.399%2c-98.51%2c-335.494C-158.832%2c-309.294%2c-202.6%2c-261.535%2c-252.815%2c-219.066C-313.223%2c-167.976%2c-403.628%2c-137.5%2c-423.239%2c-60.853C-442.846%2c15.779%2c-390.938%2c92.196%2c-349.732%2c159.717C-312.117%2c221.354%2c-261.869%2c274.395%2c-198.042%2c308.16C-137.477%2c340.2%2c-67.972%2c336.1%2c0%2c344.73' fill='rgba(8%2c 141%2c 225%2c 0.12)'%3e%3c/path%3e%3cpath d='M1440 944.9110000000001C1511.512 931.665 1575.78 904.692 1641.494 873.53 1717.1019999999999 837.677 1802.625 815.278 1853.488 748.833 1909.938 675.09 1945.165 581.097 1936.101 488.671 1926.885 394.695 1868.705 313.368 1804.034 244.563 1741.164 177.675 1664.835 117.04899999999998 1574.047 103.47699999999998 1487.486 90.53699999999998 1407.941 141.324 1326.415 173.164 1252.125 202.178 1180.166 230.848 1118.478 281.4 1046.865 340.08500000000004 942.696 395.78499999999997 941.779 488.367 940.836 583.577 1070.6100000000001 624.139 1114.243 708.768 1154.636 787.113 1112.685 906.53 1184.051 958.264 1254.651 1009.442 1354.261 960.793 1440 944.9110000000001' fill='rgba(61%2c 176%2c 248%2c 0.12)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1023'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .course-module__info {
+        @apply grid items-center gap-4;
+        grid-template-columns: .3fr 1fr;
+        @apply sm:grid-cols-1;
+
+        .image-placeholder {
+            @apply min-h-[140px] h-[160px] w-[250px];
+            @apply sm:w-full sm:mt-4;
+        }
+       
+        .course-module__title {
+            @apply text-3xl font-bold mb-1;
+        }
+
+        .course-module-active {
+            @apply absolute top-3 right-4 uppercase text-blue-400 font-bold;
+        }
+    }
+
+   
+
+    .course-module__meta {
+        @apply flex items-center justify-between gap-2;
+        @apply sm:flex-col;
+    }
+
+    .course-module__actions {
+        @apply flex items-center gap-4;
+
+        .course-module__action {
+            @apply flex justify-center items-center gap-2 border-[1px] border-gray-200 rounded-full;
+            @apply w-[130px] h-[130px];
+            @apply transition-all; 
+            @apply font-bold text-lg text-primary;
+
+            &:hover {
+                @apply bg-secondary border-secondary text-white;
+
+                svg {
+
+                    polygon {
+                        fill: white !important;
+                    }
+                }
+            }
+
+        }
+    }
+}

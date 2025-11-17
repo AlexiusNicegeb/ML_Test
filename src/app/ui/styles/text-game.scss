@@ -1,0 +1,290 @@
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  80% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.text-game {
+  font-family: "poetsenoneregular";
+  background: url("/word-game/bg.png");
+  background-size: cover;
+  overflow: hidden;
+  @apply text-darkGrey;
+
+  &.game-active {
+    @apply justify-start pt-0 border-t-4 border-[#f8f8f8] bg-[#f8f8f8] bg-none;
+    .card {
+      @apply w-full max-w-none;
+    }
+  }
+  @apply flex flex-1 flex-wrap flex-col w-full justify-center items-center pt-12 lg:pt-20 pb-20;
+
+  .card {
+    @apply bg-white min-w-[300px] max-w-[950px] mx-auto rounded-[50px] p-8 lg:px-10 lg:py-12 shadow-xl;
+  }
+
+  button {
+    font-weight: normal;
+  }
+
+  .text-button:disabled {
+    opacity: 1;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: normal;
+    @apply text-darkBlue;
+  }
+
+  .category-headline {
+    @apply flex gap-4 items-center;
+  }
+
+  .welcome-intro {
+    @apply mb-4 md:mb-8 w-full max-w-[870px];
+  }
+
+  .headline {
+    @apply w-full max-w-[500px];
+  }
+
+  .level {
+    @apply max-w-[600px];
+  }
+
+  .checkbox-wrapper {
+    color: #6e7580;
+  }
+
+  .game-type-button {
+    border-radius: 24px;
+    border: 2px solid #1f98e3;
+    box-shadow:
+      0px 6.81942px 29.153px rgba(24, 161, 247, 0.5),
+      0px 0px 0px 2.25961px #61bdf6,
+      inset 0px 3.40971px 8.52427px rgba(24, 161, 247, 0.5);
+    text-shadow: 0px 2.41404px 0px rgba(0, 0, 0, 0.25);
+    @apply inline-flex gap-4 py-4 px-10 md:px-20 items-center justify-center text-xl md:text-3xl hover:bg-primary;
+    @apply sm:text-xl;
+
+    img {
+      @apply max-w-[30px] md:max-w-none;
+    }
+  }
+
+  .game-type-button-transparent {
+    box-shadow: none;
+    text-shadow: none;
+    @apply bg-transparent text-darkGrey border-grey hover:bg-transparent;
+  }
+
+  .yellow-button {
+    box-shadow:
+      0px 6.81942px 29.153px rgba(247, 187, 24, 0.5),
+      0px 0px 0px 2.25961px #e4a702,
+      inset 0px 3.40971px 8.52427px rgba(247, 187, 24, 0.5);
+    @apply bg-yellow border-lightYellow hover:bg-yellow;
+  }
+
+  .alarm,
+  .magnify,
+  .notes,
+  .circle {
+    @apply hidden md:block absolute opacity-0 transition-all duration-300;
+    &.show {
+      @apply opacity-100 scale-100;
+    }
+    &.animate {
+      animation: scaleIn 0.3s ease-in-out forwards;
+    }
+  }
+
+  .magnify {
+    animation-delay: 0.2s !important;
+    @apply top-[15px] left-[-135px];
+  }
+
+  .alarm {
+    animation-delay: 0.25s !important;
+    @apply top-[-75px] right-[-180px];
+  }
+
+  .notes {
+    animation-delay: 0.3s !important;
+    @apply bottom-[-150px] left-[-135px];
+  }
+
+  .circle {
+    animation-delay: 0.35s !important;
+    @apply bottom-[-140px] right-[-200px];
+  }
+
+  .prestart-text-game {
+    @apply relative flex gap-8 flex-col justify-center items-center w-full;
+  }
+
+  .word-button,
+  .seperator-button,
+  .text-item {
+    font-size: 40px;
+    @apply py-3 px-[5px] w-auto max-w-none hover:bg-primary hover:text-white rounded-md min-h-0 self-center;
+  }
+
+  .text-item {
+    @apply hover:bg-transparent hover:text-inherit px-0;
+  }
+
+  .word-button.active,
+  .seperator-button.active {
+    @apply hover:bg-inherit hover:text-inherit;
+  }
+
+  button.word-button.highlighted,
+  button.seperator-button.highlighted {
+    @apply bg-primary text-white !important;
+  }
+
+  .next-word {
+    @apply w-auto min-h-0 self-center p-2 ml-4;
+  }
+
+  .back {
+    @apply xl:bg-white xl:text-primary lg:absolute left-[0px] top-[0px] xl:left-[-270px] w-[65px] h-[65px] justify-center flex-grow-0 flex-shrink-0 m-0;
+  }
+
+  .text-wrapper {
+    @apply flex justify-center items-center flex-wrap min-h-[80px] mb-20;
+  }
+
+  .seperator-button {
+    @apply w-[30px] h-[44px] indent-[-2px];
+  }
+
+  .category-wrapper {
+    @apply flex flex-col lg:flex-row gap-[30px] items-start mb-12 overflow-hidden;
+    & > div {
+      padding: 20px 20px 20px 20px;
+      border: 1px solid #d1d9e5;
+      border-radius: 20px;
+      @apply flex-1;
+    }
+
+    .comma .checkbox-wrapper input[type="checkbox"]:checked + .box {
+      @apply bg-yellow border-yellowDark;
+    }
+  }
+
+  .level-select {
+    @apply w-full flex gap-8 flex-col items-center mb-8;
+
+    button {
+      @apply max-w-[450px] w-full bg-transparent
+        text-primary border-grey;
+    }
+
+    .selected {
+      @extend .yellow-button;
+      @apply text-white;
+    }
+
+    .not-selected {
+      box-shadow: none;
+      @apply hover:bg-transparent;
+    }
+  }
+
+  .text-game-content {
+    @apply flex flex-col w-full items-center;
+  }
+
+  .error-text {
+    font-size: 25px;
+    @apply text-red-500 font-bold p-0;
+  }
+
+  .text-game-header {
+    @apply w-full py-10 self-start bg-white mb-12;
+
+    .wrapper {
+      @apply flex items-center gap-8 flex-col md:flex-row;
+    }
+
+    .wortspiel {
+      max-width: 200px;
+    }
+    .wortspiel-wrapper {
+      @apply self-center;
+    }
+  }
+
+  .level-info {
+    font-size: 18px;
+    @apply flex gap-2 items-center;
+  }
+
+  .game-info {
+    @apply flex w-full mb-12;
+  }
+
+  .answers-info {
+    @apply flex flex-wrap gap-4 justify-center items-center ml-auto;
+    & > div {
+      @apply flex gap-4 bg-white h-[70px] px-[25px] items-center border border-grey rounded-3xl;
+    }
+  }
+
+  .countdown {
+    background: #eff8ff;
+    font-size: 18px;
+    line-height: 34px;
+    @apply flex flex-col items-center justify-center pt-[13px] pb-[15px] py-[15px] w-[160px] rounded-3xl md:ml-auto;
+
+    .seconds {
+      font-size: 32px;
+      @apply text-primary;
+    }
+  }
+
+  .game-top {
+    font-size: 25px;
+    @apply flex mb-12;
+
+    .current-question {
+      @apply text-primary;
+    }
+
+    .question-info {
+      @apply flex items-center gap-[12px] ml-auto text-darkBlue;
+      .current {
+        background: #eff8ff;
+        @apply inline-flex items-center text-primary justify-center rounded-full p-2 w-[50px] h-[50px];
+      }
+    }
+  }
+
+  .seperator-line {
+    @apply relative max-w-[80%] mx-auto mt-6 mb-12 border-t-2 border-grey;
+    &:after,
+    &:before {
+      content: "";
+      @apply block bg-primary w-[20px] h-[20px] absolute top-[-11px] left-0 rounded-full;
+    }
+
+    &:after {
+      @apply left-auto right-0;
+    }
+  }
+}

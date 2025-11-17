@@ -1,0 +1,25 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply text-darkBlue items-center;
+}
+
+.wrapper {
+  @apply lg:mx-auto w-full max-w-[1420px] px-[20px];
+}
+
+article {
+  @apply wrapper p-[20px] pt-0 mt-10 flex-1;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+textarea {
+  @apply border rounded-lg px-4 py-2 min-w-[300px];
+}

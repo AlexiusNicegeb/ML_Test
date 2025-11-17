@@ -1,0 +1,238 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.test-tool {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  .page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+    width: 100%;
+  }
+
+  .box {
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 16px 40px rgba(31, 38, 135, 0.1);
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.6);
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .login-container {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    padding: 5rem 3rem 5rem 3rem;
+
+    h1 {
+      @apply text-[#00A6F4];
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      @apply text-[#6c757d];
+    }
+    .coming-soon {
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    #access-code {
+      width: 100%;
+      height: 52px;
+      padding: 1rem 3rem 1rem 1rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    #toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      display: block;
+    }
+    button {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      @apply bg-primary;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+    }
+    #error-message {
+      @apply text-red-500;
+      margin-top: 1.5rem;
+      font-weight: 500;
+    }
+  }
+
+  .selection-container {
+    width: 100%;
+    max-width: 1100px;
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+    }
+
+    .text-type-card {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid white;
+      border-radius: 15px;
+      padding: 2rem 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .text-type-card:not(.disabled):hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      margin: 1rem 0 0.5rem 0;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .start-button,
+    .soon-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .start-button {
+      @apply bg-primary;
+      color: white;
+    }
+
+    .soon-badge {
+      @apply bg-gray-200;
+      font-style: italic;
+      font-weight: bold;
+    }
+  }
+
+  .writing-container {
+    width: 100%;
+    max-width: 1100px;
+    #text-input {
+      caret-color: #333;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      color: #212529;
+      resize: none;
+      transition: all 0.3s;
+      width: 100%;
+      height: 770px;
+      padding: 1.5rem;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      box-sizing: border-box;
+    }
+
+    #text-input:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+
+    .editor-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    #undo-button {
+      background: #e9ecef;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      padding: 0.6rem 1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #undo-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #submit-button {
+      @apply bg-primary;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

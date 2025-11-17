@@ -1,0 +1,149 @@
+.my-courses {
+  @apply relative grid grid-cols-2 gap-4 mb-8 w-full;
+  @apply md:grid-cols-1;
+
+  .my-course {
+    @apply relative p-8 w-full rounded-3xl border flex flex-col gap-6 items-start shadow-sm;
+
+    &:hover {
+      @apply shadow-lg;
+      @apply transition-all;
+    }
+  }
+
+  .my-course-info {
+    @apply flex-1 flex flex-col justify-start self-stretch;
+  }
+
+  .my-course-title {
+    @apply text-3xl font-bold mb-1;
+  }
+
+  h3 {
+    @apply min-h-16;
+  }
+
+  .image-placeholder {
+    @apply w-full object-cover;
+  }
+}
+
+.data-package-wrapper {
+  @apply flex flex-col gap-8 mt-6;
+  @apply md:grid-cols-1;
+}
+
+.data-package {
+  flex: 0 0 auto;
+  @apply lg:w-[100%];
+
+  .current-video-name {
+    @apply flex items-center mb-4 gap-4 w-full ml-4;
+    @apply pb-4;
+
+    .module-name {
+      @apply text-primary text-lg font-bold uppercase w-fit whitespace-nowrap;
+    }
+  }
+}
+
+.course-detail-headline {
+  @apply mb-4;
+}
+
+.detail-wrapper {
+  @apply mb-5;
+}
+
+.image-placeholder {
+  @apply bg-primaryLight overflow-hidden w-full h-auto xxl:h-[220px] xxl:w-[280px] flex items-center justify-center rounded-3xl;
+  &.empty {
+    @apply min-h-[220px];
+  }
+}
+
+.course-top-menu {
+  @apply flex flex-col gap-4 mb-8 shadow-lg rounded-3xl;
+
+  .course-info-wrapper {
+    @apply grid items-center gap-4 p-8 relative rounded-3xl rounded-b-none overflow-hidden;
+    grid-template-columns: 1fr 0.3fr;
+    @apply md:grid-cols-1;
+
+    .course-info__bg {
+      @apply absolute left-[-5%] w-[110%] h-[110%] z-[-1] rounded-3xl rounded-b-none blur-[6px];
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1020%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M834 179L833 -146' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M831 104L830 -92' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M27 538L26 383' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M980 407L979 238' stroke-width='10' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M628 147L627 334' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M1265 304L1264 55' stroke-width='10' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M1024 350L1023 -34' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M664 421L663 645' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M1027 155L1026 347' stroke-width='10' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M587 536L586 704' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M476 191L475 350' stroke-width='10' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M196 523L195 689' stroke-width='10' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M1219 228L1218 404' stroke-width='10' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M608 499L607 203' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M526 419L525 723' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M305 203L304 50' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M17 328L16 501' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M992 157L991 501' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M452 547L451 337' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M352 43L351 -309' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M1102 505L1101 690' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M758 426L757 694' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M1406 403L1405 637' stroke-width='10' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M26 89L25 430' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M982 179L981 411' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M670 462L669 838' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M671 323L670 145' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M413 36L412 -349' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M1236 216L1235 -150' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M238 12L237 401' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M421 512L420 739' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M465 244L464 -119' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M249 546L248 352' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M118 221L117 612' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3cpath d='M1436 221L1435 564' stroke-width='8' stroke='url(%26quot%3b%23SvgjsLinearGradient1021%26quot%3b)' stroke-linecap='round' class='Up'%3e%3c/path%3e%3cpath d='M618 304L617 655' stroke-width='6' stroke='url(%26quot%3b%23SvgjsLinearGradient1022%26quot%3b)' stroke-linecap='round' class='Down'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1020'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='0%25' y1='100%25' x2='0%25' y2='0%25' id='SvgjsLinearGradient1021'%3e%3cstop stop-color='rgba(28%2c 83%2c 142%2c 0)' offset='0'%3e%3c/stop%3e%3cstop stop-color='%231c538e' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='0%25' y1='0%25' x2='0%25' y2='100%25' id='SvgjsLinearGradient1022'%3e%3cstop stop-color='rgba(28%2c 83%2c 142%2c 0)' offset='0'%3e%3c/stop%3e%3cstop stop-color='%231c538e' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+    }
+
+    .course-info__content {
+      @apply flex items-start gap-4 text-white;
+      @apply md:flex-col;
+
+      .image-placeholder {
+        @apply shadow-lg;
+        @apply md:w-full;
+      }
+
+      .course-meta {
+        h2 {
+          @apply text-4xl font-bold;
+        }
+      }
+    }
+
+    .course-progress {
+      @apply hidden flex-col gap-4 text-white;
+
+      .course-progress-heading {
+        @apply text-2xl font-bold mb-10 text-center;
+      }
+    }
+  }
+
+  .course-links {
+    @apply flex items-center gap-4 mt-4 px-8 pb-8;
+    @apply md:flex-col;
+
+    .course-menu-item {
+      @apply flex items-center gap-2 border-0 rounded-xl;
+      @apply md:w-full;
+
+      &.active {
+        @apply bg-darkBlue;
+      }
+    }
+  }
+}
+
+.single-course-heading {
+  @apply flex items-center gap-4 text-3xl text-primary;
+
+  &:before {
+    content: "";
+    @apply w-[4px] h-[25px] bg-secondary flex;
+  }
+}
+
+.course-details-wrapper {
+  @apply grid gap-10;
+  grid-template-columns: 1fr 0.4fr;
+  @apply md:grid-cols-1;
+
+  .course-details__inner-modules {
+    @apply flex flex-col gap-8;
+    .course-modules-wrapper {
+      @apply p-8 rounded-2xl bg-slate-50 cursor-pointer;
+      .module-header {
+        @apply flex justify-between items-start pb-4;
+
+        svg {
+          @apply cursor-pointer;
+        }
+      }
+    }
+  }
+
+  .course-details__inner {
+    @apply md:mb-8;
+  }
+}

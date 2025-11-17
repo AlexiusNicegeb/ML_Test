@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[data-plugin="vale"] {
+  text-decoration: underline wavy #3b82f6;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+[data-plugin="feedback"] {
+  text-decoration: underline wavy red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+@import "./navigation.scss";
+@import "./layout.scss";
+@import "./checkbox.scss";
+@import "./header.scss";
+@import "./footer.scss";
+@import "./helper.scss";
+@import "./button.scss";
+@import "./fonts.scss";
+@import "./typography.scss";
+@import "./modal.scss";
+@import "./burger-menu.scss";
+@import "./hero.scss";
+@import "./login.scss";
+@import "./register.scss";
+@import "./my-courses.scss";
+@import "./course-navigation-bar";
+@import "./text-game.scss";
+@import "./video-player.scss";
+@import "./file-upload.scss";
+@import "./cards.scss";
+@import "./course-module.scss";
+@import "./chat.scss";
+@import "./single-lecture.scss";
+@import "./breadcrumbs.scss";
+@import "./start-course.scss";
+@import "./word-game.scss";
+@import "./test-tool.scss";
+@import "./analyse-tool.scss";
+
+@import "./admin/layout.scss";
+@import "./admin/admin-files.scss";
+@import "./admin/user-dropdown.scss";
+@import "./admin/drag-and-drop.scss";
+@import "./admin/cards.scss";
+@import "./admin/tags.scss";
+@import "./admin/weekpicker.scss";

@@ -1,0 +1,11 @@
+.breadcrumbs {
+    @apply my-8 ml-4;
+
+    ul {
+        @apply flex items-center gap-4;
+        li {
+            @apply flex items-center gap-2 capitalize text-xl;
+            @apply sm:text-sm;
+        }
+    }
+}

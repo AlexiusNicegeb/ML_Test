@@ -1,0 +1,32 @@
+.file-upload-area {
+  @apply relative w-full min-h-[200px] border-dashed border-2 flex gap-4 flex-wrap py-8 px-6 mb-8;
+
+  &::after {
+    content: "Dateien hierher ziehen";
+    position: absolute;
+    right: 8px;
+    bottom: 5px;
+    pointer-events: none;
+    @apply opacity-40;
+  }
+
+  &.single::after {
+    content: "Datei hierher ziehen";
+  }
+}
+
+.files-update-overlay {
+  @apply fixed bottom-[10px] right-[10px] max-h-[300px] overflow-auto justify-center border-2 p-4 bg-white;
+  ul {
+    @apply flex flex-col gap-4;
+  }
+
+  .progress-bar {
+    background-color: whiteSmoke;
+    width: 100%;
+    height: 20px;
+  }
+  .progress-bar span {
+    @apply block bg-primary transition-all;
+  }
+}

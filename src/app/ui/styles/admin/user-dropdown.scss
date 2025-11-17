@@ -1,0 +1,19 @@
+.user-dropdown {
+  @apply hidden bg-white shadow-lg rounded-lg absolute right-0 top-12 w-[250px] z-50;
+
+  button {
+    @apply px-4 py-2 w-full;
+  }
+
+  h3 {
+    @apply mb-0;
+  }
+
+  .user-top {
+    @apply border-b-2 p-4;
+  }
+
+  &.show {
+    @apply block;
+  }
+}

@@ -1,0 +1,182 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String               @id @default(uuid())
+  email          String               @unique
+  password       String
+  firstName      String
+  lastName       String
+  role           Role                 @default(USER)
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  moduleResults  UserModuleResult[]   @relation("UserToModuleResults")
+  purchases      CoursePurchase[]
+  packagePurchases   CoursePackagePurchase[]
+  
+
+  @@map("users")
+}
+
+model Course {
+  id                 Int                  @id @default(autoincrement())
+  title              String
+  description        String?
+  mediaUrl           String
+  courseCode         String               @unique
+  slug               String?
+  price              Decimal?             @default(0) @db.Decimal(10, 2)
+  discount           Int?
+  discountExpiresAt  DateTime?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  userModuleResults  UserModuleResult[]
+  Coupon             Coupon[]
+  purchases          CoursePurchase[]
+  tags               CourseTag[]
+  packageLinks       CoursePackageCourse[]
+
+  @@index([courseCode])
+  @@map("courses")
+}
+
+model Coupon {
+  id              String           @id @default(uuid())
+  code            String           @unique
+  discountPercent Float
+  validFrom       DateTime
+  validTo         DateTime?
+  redeemed        Boolean          @default(false)
+  redeemedAt      DateTime?
+  courseId        Int
+  course          Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  purchases       CoursePurchase[] @relation("CouponUsage")
+
+  @@map("coupons")
+}
+
+model Tag {
+  id      Int         @id @default(autoincrement())
+  name    String      @unique
+  courses CourseTag[]
+
+  @@map("tags")
+}
+
+model CourseTag {
+  courseId Int
+  tagId    Int
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  tag      Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([courseId, tagId])
+  @@map("course_tags")
+}
+
+model Task {
+  id       Int               @id @default(autoincrement())
+  title    String
+  type     TaskType
+  position Int
+  config   Json
+
+  @@unique([position])
+  @@map("tasks")
+}
+
+model CoursePackage {
+  id              Int      @id @default(autoincrement())
+  title              String
+  description        String?
+  mediaUrl           String
+  slug               String?
+  price              Decimal?             @default(0) @db.Decimal(10, 2)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  courseLinks     CoursePackageCourse[]
+
+  @@map("course_packages")  
+}
+
+model CoursePackageCourse {
+  coursePackage   CoursePackage @relation(fields: [coursePackageId], references: [id], onDelete: Cascade)
+  coursePackageId Int
+  course          Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId        Int
+
+  @@id([coursePackageId, courseId])
+  @@map("course_packages_courses")
+}
+
+model CoursePurchase {
+  id              Int      @id @default(autoincrement())
+  userId          String
+  courseId        Int
+  couponId        String?
+  purchasedAt     DateTime @default(now())
+  pricePaid       Decimal  @db.Decimal(10, 2)
+  discountApplied Int?
+  coupon          Coupon?  @relation("CouponUsage", fields: [couponId], references: [id])
+  course          Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@map("course_purchases")
+}
+
+model CoursePackagePurchase {
+  id              Int      @id @default(autoincrement())
+  userId          String
+  packageId        Int
+  purchasedAt     DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, packageId])
+  @@map("course_package_purchases")
+}
+
+model UserModuleResult {
+  id          Int       @id @default(autoincrement())
+  userId      String
+  contents    Json
+  evaluation  Json
+  watched     Boolean   @default(false)
+  submitted   Boolean   @default(false)
+  submittedAt DateTime?
+  round       Int       @default(0)
+  courseId    Int
+  course      Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user        User      @relation("UserToModuleResults", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId, round])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TaskType {
+  VIDEO
+  PDF
+  TEXT
+  WRITING
+  QUIZ
+  DRAG_DROP
+  ORDERING
+  GAME
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  PASSED
+  FAILED
+}

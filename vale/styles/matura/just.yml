@@ -1,0 +1,8 @@
+extends: existence
+message: "Avoid using 'just'; it can weaken your statement."
+level: suggestion
+ignorecase: true
+scope: text
+nonword: true
+tokens:
+  - just

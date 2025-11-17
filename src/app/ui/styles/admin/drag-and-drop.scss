@@ -1,0 +1,37 @@
+.admin-drag-and-drop {
+  @apply md:flex gap-6 my-6;
+}
+
+.admin-drag-and-drop > div {
+  @apply md:basis-1/2 bg-gray-50 p-4 rounded-xl transition-all;
+}
+
+.admin-drag-and-drop .droppable-list,
+.admin-drag-and-drop .dragable-list {
+  @apply flex flex-col gap-2 h-[300px] overflow-y-auto overflow-x-hidden;
+}
+
+.admin-drag-and-drop .dragable-list {
+  @apply h-[676px];
+}
+
+.admin-draggable-item {
+  opacity: 1 !important;
+  @apply flex items-center p-[8px]  border bg-white cursor-pointer;
+
+  & + .admin-draggable-item {
+    @apply border-t-0;
+  }
+}
+
+.admin-drag-and-drop .drop-container {
+  @apply border-dashed border-2 mb-6;
+}
+
+.admin-drag-and-drop .drop-container.hovered {
+  @apply border-primary;
+}
+
+.admin-drag-and-drop .folder-item {
+  @apply pl-2 mb-6;
+}

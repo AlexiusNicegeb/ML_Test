@@ -1,0 +1,15 @@
+.nav-link {
+  font-weight: 500;
+  @apply text-[16px];
+}
+
+.nav-link:hover,
+.nav-link.nav-link-active {
+  @apply text-primary;
+}
+
+.nav-link-register {
+  font-weight: 500;
+  border-radius: 28px 28px 28px 28px;
+  @apply flex gap-2 items-center bg-primary text-white py-3 px-4 hover:bg-secondary hover:text-white text-[16px];
+}

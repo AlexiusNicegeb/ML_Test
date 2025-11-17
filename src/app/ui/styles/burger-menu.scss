@@ -1,0 +1,46 @@
+.burger-menu {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  height: 40px;
+  width: 40px;
+}
+
+.burger-menu span {
+  position: absolute;
+  width: 60%;
+  height: 2px;
+  top: 50%;
+  left: 20%;
+  margin-top: -1px;
+  display: block;
+  background: black;
+  transition: 0.5s;
+}
+
+.burger-menu span:first-child {
+  top: 12px;
+}
+
+.burger-menu span:last-child {
+  top: calc(100% - 12px);
+}
+
+.burger-menu label:hover {
+  cursor: pointer;
+}
+
+.burger-menu.open span {
+  opacity: 0;
+  top: 50%;
+}
+
+.burger-menu.open span:first-child {
+  opacity: 1;
+  transform: rotate(405deg);
+}
+
+.burger-menu.open span:last-child {
+  opacity: 1;
+  transform: rotate(-405deg);
+}

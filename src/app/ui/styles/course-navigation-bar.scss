@@ -1,0 +1,11 @@
+.course-navigation-bar {
+  @apply bg-gray-100;
+
+  .wrapper {
+    @apply flex py-[10px] px-[20px];
+  }
+
+  .back-t-prev {
+    @apply flex gap-2 items-center justify-center py-[8px] px-[15px] bg-primary rounded-full text-white;
+  }
+}

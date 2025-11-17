@@ -1,0 +1,8 @@
+.start-course {
+    @apply flex items-start justify-between w-full p-0;
+    @apply sm:flex-col;
+
+    h1 {
+        @apply text-white;
+    }
+}

@@ -1,0 +1,8 @@
+extends: existence
+message: "Avoid using 'very'; it's often unnecessary."
+level: suggestion
+ignorecase: true
+scope: text
+nonword: true
+tokens:
+  - very
